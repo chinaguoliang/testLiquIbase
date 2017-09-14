@@ -96,6 +96,7 @@
 					<referenceUrl>jdbc:mysql://localhost:3306/test2</referenceUrl>
 					<referenceUsername>root</referenceUsername>
 					<referencePassword>root</referencePassword>
+					<diffChangeLogFile>db-diff-changelog.xml</diffChangeLogFile>
 				</configuration>
 			</plugin>
 		</plugins>
