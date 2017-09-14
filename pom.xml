@@ -47,6 +47,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+			<version>5.1.37</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -92,6 +93,9 @@
 					<url>jdbc:mysql://localhost:3306/test</url>
 					<username>root</username>
 					<password>root</password>
+					<referenceUrl>jdbc:mysql://localhost:3306/test2</referenceUrl>
+					<referenceUsername>root</referenceUsername>
+					<referencePassword>root</referencePassword>
 				</configuration>
 			</plugin>
 		</plugins>
