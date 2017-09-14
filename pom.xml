@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.chen.testliquibase</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>test</artifactId>
+	<version>1</version>
 	<packaging>jar</packaging>
 
 	<name>demo</name>
@@ -77,8 +77,8 @@
 				<version>3.5.3</version>
 				<configuration>
 					<!--指定执行主文件-->
-					<changeLogFile>${project.basedir}/src/main/resources/db-changelog.xml</changeLogFile>
-					<outputChangeLogFile>${project.basedir}/src/main/resources/db-changelog.xml</outputChangeLogFile>
+					<changeLogFile>classpath:db-changelog.xml</changeLogFile>
+					<outputChangeLogFile>classpath:db-changelog.xml</outputChangeLogFile>
 					<!-- 是否需要弹出确认框-->
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 					<!--输出文件的编码-->
@@ -96,6 +96,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
