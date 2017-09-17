@@ -1,17 +1,600 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-
-    <changeSet author="chen (generated)" id="1505373550691-1">
-        <addColumn tableName="home">
-            <column name="location" type="VARCHAR(255 BYTE)">
+    <changeSet author="chen (generated)" id="1505666489699-1">
+        <createTable tableName="announcement_little_tips">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" remarks="全球唯一id" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-        </addColumn>
+            <column name="school_id" remarks="学校id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="little_tips_content" remarks="小贴士内容(必须经过url 编码内容，防止出现特殊字符)" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="brief" remarks="内容简短介绍" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" remarks="图片url" type="VARCHAR(110)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="创建时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
     </changeSet>
-    <changeSet author="chen (generated)" id="1505373550691-2">
+    <changeSet author="chen (generated)" id="1505666489699-2">
+        <createTable tableName="attendance_card">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="card_id" remarks="刷卡的卡片id" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="baby_id" remarks="自己系统的宝宝id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="school_id" remarks="宝宝的学校id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_id" remarks="宝宝的班级id,因为可能是多个，所以采用varchar类型" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-3">
+        <createTable tableName="attendance_mathine_setting">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="-1" name="school_id" remarks="学校id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="is_open_ad" remarks="是否开启静止时候的广告, 0-开启广告,1-关闭广告" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ad_pic_1" remarks="广告图片1" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ad_pic_2" remarks="广告图片2" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ad_pic_3" remarks="广告图片3" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ad_pic_4" remarks="广告图片4" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ad_pic_5" remarks="广告图片5" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-4">
+        <createTable tableName="attendance_sign">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="baby_id" remarks="宝宝id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="school_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_id" remarks="班级id  有可能是多个班级，并以,号分割" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="status" remarks="0:默认,1:到园，2:未到园，3:请假" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="start_time" remarks="请假开始时间" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="end_time" remarks="请假结束时间" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-5">
+        <createTable tableName="attendance_swing_card_record">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" remarks="全球唯一id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="baby_id" remarks="自己系统的babyId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_id" remarks="宝宝班级id,因为可能是多个，所以采用varchar类型" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="school_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="card_id" remarks="卡的id" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="head_icon_url" remarks="每次刷卡的时候，拍摄的照片" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-6">
+        <createTable tableName="attendance_user">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" remarks="全球唯一id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="school_id" remarks="学校id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" remarks="登录设备的用户名" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" remarks="登录设备的密码" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-7">
+        <createTable tableName="global_comments">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" remarks="发布的评论内容" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_phone" remarks="发布评论者手机号" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_icon" remarks="发布评论用户的头像" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_name" remarks="用户的名称" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="other_bid" remarks="其他表中的bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-8">
+        <createTable tableName="global_focused_records">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="from_phone" remarks="当前用户电话" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="from_user_name" remarks="当前用户姓名" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="from_user_icon" remarks="当前用户头像" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="to_phone" remarks="关注的目标手机号" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="to_user_name" remarks="关注的目标姓名" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="to_user_icon" remarks="关注的目标头像" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="status" remarks="0:未关注  1:已关注 2:已删除" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-9">
+        <createTable tableName="global_uploaded_images">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" remarks="发布者的手机号" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" remarks="发布图片的类型(1:父母圈)" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="imgae_url" remarks="发布图片的url" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-10">
+        <createTable tableName="management_feedback">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" remarks="反馈者姓名" type="VARCHAR(15)"/>
+            <column name="contact" remarks="联系方式" type="VARCHAR(15)"/>
+            <column name="feedback_content" remarks="反馈内容" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-11">
+        <createTable tableName="management_user">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" remarks="全球唯一id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_name" remarks="用户名" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_pwd" remarks="密码" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-12">
+        <createTable tableName="moments_content">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" remarks="用户id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publish_user_phone" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publish_user_name" remarks="发布父母圈的用户名称" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publish_user_icon" remarks="发布父母圈的用户头像" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cover_img" remarks="发布的图片" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="brief" remarks="简述" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="had_see_count" remarks="有多少人看过" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_focus_count" remarks="有多少人关注" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_like_count" remarks="点赞人数" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="1" name="type" remarks="发布父母圈文章类型 1:最新话题(也就是所有的),2:推荐达人(后台发的)，3:我的圈子(我关注的和关注我的)" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="comments_count" remarks="评论数" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-13">
+        <createTable tableName="moments_viewed_records">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owner_phone" remarks="父母圈发布者电话" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="owner_user_name" remarks="父母圈发布者用户名" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="owner_user_icon" remarks="父母圈发布者头像" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="viewed_phone" remarks="看父母圈人的电话" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="viewed_user_name" remarks="看父母圈人的姓名" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="viewed_user_icon" remarks="看父母圈人的头像" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="other_bid" remarks="其他表中的bid" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="status" remarks="记录状态  0:正常状态 1:已删除" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-14">
+        <createTable tableName="payment_order">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" remarks="全球绝对唯一id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_BID" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_name" remarks="产品名称" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_price" remarks="产品价格，单位是分" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="school_id" type="INT"/>
+            <column name="class_id" type="INT"/>
+            <column name="order_id" remarks="自己系统的 order_id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="third_order_id" remarks="第三方系统的order_id" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="0" name="pay_type" remarks="1：微信支付  2:支付宝支付" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" remarks="自己系统的用户id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="order_status" remarks="订单状态  0:初始状态 1:成功  -1:失败  2:过期" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="to_phone" remarks="目标充值手机号" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_phone" remarks="用户手机号" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="device_serial_number" remarks="视频设备中摄像头的序列号" type="VARCHAR(30)"/>
+            <column name="create_time" remarks="创建记录时间" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" remarks="用户充值结束时间" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-15">
+        <createTable tableName="payment_product">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bid" remarks="全球绝对唯一id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_name" remarks="产品名称" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="origin_product_price" remarks="产品原来的价格" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_price" remarks="产品价格 单位是分" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_descript" remarks="产品描述" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_recommend" remarks="是否是推荐商品，  0:不是推荐   1:是推荐" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_type" remarks="产品类型  0:未知 1:视频直播" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_time" remarks="创建记录时间" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="1" name="period_time" remarks="当前产品是几个月  例如  1就是 1个月，默认1个月。-1就是永久" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="-1" name="school_id" remarks="学校id。-1 为 所有学校，大于0就是对应的学校" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-16">
+        <createTable tableName="plugin_location">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="school_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="latitude" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-17">
+        <createTable tableName="plugin_video_info">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="school_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="serial_num" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-18">
+        <createTable tableName="plugin_video_time">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" remarks="全球唯一id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="serial_number" remarks="摄像头的序列号" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0000-00-00 00:00:00" name="start_time" remarks="视频开始时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0000-00-00 00:00:00" name="end_time" remarks="视频结束时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" remarks="0:正常可看状态，1:已经删除的设备，不用搜索出来" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="表示创建和更新记录时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-19">
+        <createTable tableName="plugin_video_time_control">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="school_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_time" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_allow_play" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="serial_number" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verify_number" remarks="验证码" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="camera_name" remarks="视频显示名称，默认为班级名称" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="创建时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-20">
+        <createTable tableName="push_service">
+            <column autoIncrement="true" name="id" remarks="主键" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" remarks="全球唯一id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="plateform" remarks="平台 （0:默认，1:android,2:ios,3:pc）" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_version" remarks="app 版本(1:教师版，2:家长版)" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" remarks="用户手机号" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="school_id" remarks="学校id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_id" remarks="班级id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="create_time" remarks="时间" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-21">
+        <createTable tableName="temp_attendance_card">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bid" remarks="全球唯一id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="school_id" remarks="学校id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="card_id" remarks="刷卡的卡片id" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-22">
+        <addPrimaryKey columnNames="id, product_type" constraintName="PRIMARY" tableName="payment_product"/>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-23">
+        <addUniqueConstraint columnNames="id" constraintName="id" tableName="plugin_video_time_control"/>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-24">
+        <addUniqueConstraint columnNames="school_id" constraintName="school_id" tableName="plugin_location"/>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-25">
+        <dropTable tableName="home"/>
+    </changeSet>
+    <changeSet author="chen (generated)" id="1505666489699-26">
         <dropTable tableName="school"/>
     </changeSet>
-    <changeSet author="chen (generated)" id="1505373550691-3">
+    <changeSet author="chen (generated)" id="1505666489699-27">
         <dropTable tableName="temp"/>
     </changeSet>
 </databaseChangeLog>
